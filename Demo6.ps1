@@ -18,7 +18,3 @@ Add-PnPField -List "Demo" -DisplayName "FirstName" -InternalName "FirstName" -Ty
 Add-PnPField -List "Demo" -DisplayName "LastName" -InternalName "LastName" -Type Text
 
 Add-PnPListItem -List "Demo" -Values @{"Title" = "Mr"; "FirstName" = "Emmanuel"; "LastName" = "Macron"} -ContentType "Item"
-
-https://M365x167444.sharepoint.com
-admin@M365x167444.onmicrosoft.com
-iva.novosel@2468
