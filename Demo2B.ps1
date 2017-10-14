@@ -21,7 +21,32 @@ Function Create-SPMockupSites($Path)
         }
     }
 }
- 
+
+# Completely deletes the specified Web (including all subsites)
+
+function RemoveSPWebRecursively(
+    [Microsoft.SharePoint.SPWeb] $web)
+{
+    Write-Debug "Removing site ($($web.Url))..."
+    
+    $subwebs = $web.GetSubwebsForCurrentUser()
+    
+    foreach($subweb in $subwebs)
+    {
+        RemoveSPWebRecursively($subweb)
+        $subweb.Dispose()
+    }
+    
+    $DebugPreference = "SilentlyContinue"
+    Remove-SPWeb $web -Confirm:$false
+    $DebugPreference = "Continue"
+}
+
 #To use the preceding code, type the following:
 $siteUrl = Read-Host "Howdy, please enter your site collection URL"
 Create-SPMockupSites $siteUrl
+
+Read-Host "Press any key to proceed..."
+
+$web = Get-SPWeb "$siteUrl/templates"
+RemoveSPWebRecursively $web
