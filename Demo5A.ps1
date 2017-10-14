@@ -29,9 +29,9 @@ $cd = @{
 
 
 # . .\demo6a.ps1
-# Example            
+# Example -ConfigurationData $cd            
             
-# Start-DscConfiguration -Path .\ScriptTest -Wait -Verbose            
+# Start-DscConfiguration -Path .\Example -Wait -Verbose            
 # Remove-DscConfigurationDocument -Stage Pending
 
 # Get-DscConfiguration 
